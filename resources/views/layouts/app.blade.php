@@ -7,14 +7,14 @@
     <title>@yield('title')</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    {{-- <link rel="shortcut icon" href="{{asset('img/shorticon.png')}}">
+    <link rel="shortcut icon" href="{{asset('img/shorticon.png')}}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/admin.min.css') }}" rel="stylesheet"> --}}
-    <link rel="shortcut icon" href="{{asset('img/shorticon.png')}}">
+    <link href="{{ asset('css/admin.min.css') }}" rel="stylesheet">
+    {{-- <link rel="shortcut icon" href="{{asset('img/shorticon.png')}}">
     <link href="/css/app.css" rel="stylesheet">
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="/css/admin.min.css" rel="stylesheet">
+    <link href="/css/admin.min.css" rel="stylesheet"> --}}
 </head>
 <body class="light" @auth id="page-top" @endauth>
 
