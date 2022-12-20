@@ -83,6 +83,7 @@
                 </div>
             </div>
         </li>
+        @if(Auth::user()->role == 'Admin')
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#categoryCollapse"
                 aria-expanded="true" aria-controls="categoryCollapse">
@@ -96,7 +97,6 @@
                 </div>
             </div>
         </li>
-        @if(Auth::user()->role == 'Admin')
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#usersCollapse"
                 aria-expanded="true" aria-controls="usersCollapse">
@@ -110,7 +110,6 @@
                 </div>
             </div>
         </li>
-        @endif
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#reportsCollapse"
                 aria-expanded="true" aria-controls="reportsCollapse">
@@ -146,6 +145,7 @@
                 </div>
             </div>
         </li>
+        @endif
     </ul>
 
     <div id="content-wrapper" class="d-flex flex-column">

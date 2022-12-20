@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="row pages">
+        @if(Auth::user()->role == 'Admin')
         <div class="col-lg-4">
             <div class="card text-left sticky-top p-2">
                 <div class="card-header p-3">
@@ -92,7 +93,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-8">
+        @endif
+        <div class="@if(Auth::user()->role == 'Admin') col-lg-8 @else col-lg @endif">
             <div class="card shadow p-2">
                 <div class="card-header">
                     <h4 class="text-tertiary">Items Available</h4>
@@ -101,12 +103,14 @@
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="d-flex gap-1">
+                            @if(Auth::user()->role == 'Admin')
                             <form id="importForm" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="file" name="file" class="d-none" id="import" onchange="document.getElementById('submitImport').click()">
                                 <button type="submit" role="button" class="d-none" id="submitImport"></button>
                             </form>
                             <button type="button" role="button" class="btn btn-sm text-light" onclick="document.getElementById('import').click();"><i class="fas fa-file-import mr-2"></i><span>Import Items</span></button>
+                            @endif
                             <a href="{{route('export.items')}}" class="btn btn-sm text-light d-flex align-items-center"><i class="fas fa-file-export mr-2"></i><span>Export Items</span></a>
                             <a href="{{asset('vendor/item-format.xlsx')}}" class="btn btn-info btn-sm text-light d-flex align-items-center"><i class="fas fa-file-excel mr-2" download></i><span>Download Item Format</span></a>
                         </div>
@@ -163,14 +167,16 @@
         const viewItemsContent = document.querySelector('#viewItemsContent')
         const paginationLink = document.querySelector('#pagination_link')
         const totalItems = document.querySelector('#totalItems')
+        @if(Auth::user()->role == 'Admin')
         const importForm = document.querySelector('#importForm')
+        @endif
         var pb = document.querySelector('.progress');
         const progress = document.querySelector('.progress-bar')
         
         // modal init
         var viewItemModal = new bootstrap.Modal(document.getElementById('viewItemsModal'))
         getItems(1, undefined); 
-        
+        @if(Auth::user()->role == 'Admin')
         const url = '{{route("import.items")}}';
         importForm.addEventListener('submit', async function(e){
             e.preventDefault();
@@ -209,6 +215,7 @@
                     })
                 });
         });
+        @endif
         
 
         async function viewItem(item){

@@ -33,6 +33,50 @@ Route::group(['middleware' => 'auth'], function(){
         Route::patch('/update-items/{id}', [App\Http\Controllers\Admin\ItemsController::class, 'update'])->name('update.item');
         // update sales discount
         Route::get('/update-sales-discount/{value}', [App\Http\Controllers\Admin\SalesController::class, 'updateDiscount']);
+        // items post action
+        Route::post('/import-items', [App\Http\Controllers\Admin\ItemsController::class, 'importItems'])->name('import.items');
+        Route::post('/store-items', [App\Http\Controllers\Admin\ItemsController::class, 'store'])->name('store.items');
+
+        //===================================================CATEGORY=======================================================================
+        // category view
+        Route::get('/categories', [App\Http\Controllers\Admin\CategoriesController::class, 'index'])->name('categories');
+        // category post action
+        Route::post('/create-category', [App\Http\Controllers\Admin\CategoriesController::class, 'store'])->name('store.category');
+        Route::post('/update-category', [App\Http\Controllers\Admin\CategoriesController::class, 'updateCategory'])->name('update.category');
+        // category get action
+        Route::get('/get-category', [App\Http\Controllers\Admin\CategoriesController::class, 'getCategory']);
+        Route::get('/edit-category/{id}', [App\Http\Controllers\Admin\CategoriesController::class, 'editCategory']);
+        Route::get('/filter-category/{input}', [App\Http\Controllers\Admin\CategoriesController::class, 'filter']);
+        Route::get('/delete-category/{input}', [App\Http\Controllers\Admin\CategoriesController::class, 'deleteCategory']);
+
+        //===================================================SUB CATEGORY=======================================================================
+        // Sub category view
+        Route::get('/sub-categories', [App\Http\Controllers\Admin\SubCategoryController::class, 'index'])->name('sub.categories');
+        // sub category post action
+        Route::post('/create-sub-category', [App\Http\Controllers\Admin\SubCategoryController::class, 'store'])->name('store.sub.category');
+        Route::post('/update-sub-category', [App\Http\Controllers\Admin\SubCategoryController::class, 'updateSubCategory'])->name('update.sub.category');
+        // sub category get action
+        Route::get('/get-sub-category', [App\Http\Controllers\Admin\SubCategoryController::class, 'getSubCategory']);
+        Route::get('/edit-sub-category/{id}', [App\Http\Controllers\Admin\SubCategoryController::class, 'editSubCategory']);
+        Route::get('/filter-sub-category/{input}', [App\Http\Controllers\Admin\SubCategoryController::class, 'filter']);
+        Route::get('/delete-sub-category/{input}', [App\Http\Controllers\Admin\SubCategoryController::class, 'deleteSubCategory']);
+
+        //===================================================REPORTS=======================================================================
+        // report view
+        Route::get('/reports/revenue-report', [App\Http\Controllers\Admin\ReportsController::class, 'revenueReport'])->name('revenue.report');
+        Route::get('/reports/transfered-in', [App\Http\Controllers\Admin\ReportsController::class, 'transferedIn'])->name('transfered.in.report');
+        Route::get('/reports/transfered-out', [App\Http\Controllers\Admin\ReportsController::class, 'transferedOut'])->name('transfered.out.report');
+        Route::get('/reports/delivery-report', [App\Http\Controllers\Admin\ReportsController::class, 'deliveryReport'])->name('delivery.report');
+        Route::get('/reports/sales-report', [App\Http\Controllers\Admin\ReportsController::class, 'salesReport'])->name('sales.report');
+        Route::get('/reports/inventory-report', [App\Http\Controllers\Admin\ReportsController::class, 'inventoryReport'])->name('inventory.report');
+        
+        // export reports
+        Route::get('/reports/export/revenue-report/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportRevenueReport']);
+        Route::get('/reports/export/transfered-in/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportTransferedInReport']);
+        Route::get('/reports/export/transfered-out/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportTransferedOutReport']);
+        Route::get('/reports/export/delivery-report/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportDeliveryReport']);
+        Route::get('/reports/export/sales-report/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportSalesReport']);
+        Route::get('/reports/export/inventory-report/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportInventoryReport']);
     });
 
     //===================================================SALES=======================================================================
@@ -52,8 +96,8 @@ Route::group(['middleware' => 'auth'], function(){
     // items view
     Route::get('/items', [App\Http\Controllers\Admin\ItemsController::class, 'index'])->name('items');
     // items post action
-    Route::post('/import-items', [App\Http\Controllers\Admin\ItemsController::class, 'importItems'])->name('import.items');
-    Route::post('/store-items', [App\Http\Controllers\Admin\ItemsController::class, 'store'])->name('store.items');
+    // Route::post('/import-items', [App\Http\Controllers\Admin\ItemsController::class, 'importItems'])->name('import.items');
+    // Route::post('/store-items', [App\Http\Controllers\Admin\ItemsController::class, 'store'])->name('store.items');
     Route::post('/get-items/paginate', [App\Http\Controllers\Admin\ItemsController::class, 'getPaginate']);
     // items get action 
     Route::get('/export-items', [App\Http\Controllers\Admin\ItemsController::class, 'exportItems'])->name('export.items');
@@ -63,29 +107,29 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/filter-items/{input}', [App\Http\Controllers\Admin\ItemsController::class, 'filter']);
     Route::get('/collect-sub-categories/{id}', [App\Http\Controllers\Admin\ItemsController::class, 'collectSubCategory']);
 
-    //===================================================CATEGORY=======================================================================
-    // category view
-    Route::get('/categories', [App\Http\Controllers\Admin\CategoriesController::class, 'index'])->name('categories');
-    // category post action
-    Route::post('/create-category', [App\Http\Controllers\Admin\CategoriesController::class, 'store'])->name('store.category');
-    Route::post('/update-category', [App\Http\Controllers\Admin\CategoriesController::class, 'updateCategory'])->name('update.category');
-    // category get action
-    Route::get('/get-category', [App\Http\Controllers\Admin\CategoriesController::class, 'getCategory']);
-    Route::get('/edit-category/{id}', [App\Http\Controllers\Admin\CategoriesController::class, 'editCategory']);
-    Route::get('/filter-category/{input}', [App\Http\Controllers\Admin\CategoriesController::class, 'filter']);
-    Route::get('/delete-category/{input}', [App\Http\Controllers\Admin\CategoriesController::class, 'deleteCategory']);
+    // //===================================================CATEGORY=======================================================================
+    // // category view
+    // Route::get('/categories', [App\Http\Controllers\Admin\CategoriesController::class, 'index'])->name('categories');
+    // // category post action
+    // Route::post('/create-category', [App\Http\Controllers\Admin\CategoriesController::class, 'store'])->name('store.category');
+    // Route::post('/update-category', [App\Http\Controllers\Admin\CategoriesController::class, 'updateCategory'])->name('update.category');
+    // // category get action
+    // Route::get('/get-category', [App\Http\Controllers\Admin\CategoriesController::class, 'getCategory']);
+    // Route::get('/edit-category/{id}', [App\Http\Controllers\Admin\CategoriesController::class, 'editCategory']);
+    // Route::get('/filter-category/{input}', [App\Http\Controllers\Admin\CategoriesController::class, 'filter']);
+    // Route::get('/delete-category/{input}', [App\Http\Controllers\Admin\CategoriesController::class, 'deleteCategory']);
 
-    //===================================================SUB CATEGORY=======================================================================
-    // Sub category view
-    Route::get('/sub-categories', [App\Http\Controllers\Admin\SubCategoryController::class, 'index'])->name('sub.categories');
-    // sub category post action
-    Route::post('/create-sub-category', [App\Http\Controllers\Admin\SubCategoryController::class, 'store'])->name('store.sub.category');
-    Route::post('/update-sub-category', [App\Http\Controllers\Admin\SubCategoryController::class, 'updateSubCategory'])->name('update.sub.category');
-    // sub category get action
-    Route::get('/get-sub-category', [App\Http\Controllers\Admin\SubCategoryController::class, 'getSubCategory']);
-    Route::get('/edit-sub-category/{id}', [App\Http\Controllers\Admin\SubCategoryController::class, 'editSubCategory']);
-    Route::get('/filter-sub-category/{input}', [App\Http\Controllers\Admin\SubCategoryController::class, 'filter']);
-    Route::get('/delete-sub-category/{input}', [App\Http\Controllers\Admin\SubCategoryController::class, 'deleteSubCategory']);
+    // //===================================================SUB CATEGORY=======================================================================
+    // // Sub category view
+    // Route::get('/sub-categories', [App\Http\Controllers\Admin\SubCategoryController::class, 'index'])->name('sub.categories');
+    // // sub category post action
+    // Route::post('/create-sub-category', [App\Http\Controllers\Admin\SubCategoryController::class, 'store'])->name('store.sub.category');
+    // Route::post('/update-sub-category', [App\Http\Controllers\Admin\SubCategoryController::class, 'updateSubCategory'])->name('update.sub.category');
+    // // sub category get action
+    // Route::get('/get-sub-category', [App\Http\Controllers\Admin\SubCategoryController::class, 'getSubCategory']);
+    // Route::get('/edit-sub-category/{id}', [App\Http\Controllers\Admin\SubCategoryController::class, 'editSubCategory']);
+    // Route::get('/filter-sub-category/{input}', [App\Http\Controllers\Admin\SubCategoryController::class, 'filter']);
+    // Route::get('/delete-sub-category/{input}', [App\Http\Controllers\Admin\SubCategoryController::class, 'deleteSubCategory']);
     
 
     //===================================================TRANSFER IN=======================================================================
@@ -112,22 +156,22 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/d-get-list', [App\Http\Controllers\Admin\DeductController::class, 'getList']);
     Route::get('/d-delete-list/{id}', [App\Http\Controllers\Admin\DeductController::class, 'deleteList']);
 
-    //===================================================REPORTS=======================================================================
-    // report view
-    Route::get('/reports/revenue-report', [App\Http\Controllers\Admin\ReportsController::class, 'revenueReport'])->name('revenue.report');
-    Route::get('/reports/transfered-in', [App\Http\Controllers\Admin\ReportsController::class, 'transferedIn'])->name('transfered.in.report');
-    Route::get('/reports/transfered-out', [App\Http\Controllers\Admin\ReportsController::class, 'transferedOut'])->name('transfered.out.report');
-    Route::get('/reports/delivery-report', [App\Http\Controllers\Admin\ReportsController::class, 'deliveryReport'])->name('delivery.report');
-    Route::get('/reports/sales-report', [App\Http\Controllers\Admin\ReportsController::class, 'salesReport'])->name('sales.report');
-    Route::get('/reports/inventory-report', [App\Http\Controllers\Admin\ReportsController::class, 'inventoryReport'])->name('inventory.report');
+    // //===================================================REPORTS=======================================================================
+    // // report view
+    // Route::get('/reports/revenue-report', [App\Http\Controllers\Admin\ReportsController::class, 'revenueReport'])->name('revenue.report');
+    // Route::get('/reports/transfered-in', [App\Http\Controllers\Admin\ReportsController::class, 'transferedIn'])->name('transfered.in.report');
+    // Route::get('/reports/transfered-out', [App\Http\Controllers\Admin\ReportsController::class, 'transferedOut'])->name('transfered.out.report');
+    // Route::get('/reports/delivery-report', [App\Http\Controllers\Admin\ReportsController::class, 'deliveryReport'])->name('delivery.report');
+    // Route::get('/reports/sales-report', [App\Http\Controllers\Admin\ReportsController::class, 'salesReport'])->name('sales.report');
+    // Route::get('/reports/inventory-report', [App\Http\Controllers\Admin\ReportsController::class, 'inventoryReport'])->name('inventory.report');
     
-    // export reports
-    Route::get('/reports/export/revenue-report/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportRevenueReport']);
-    Route::get('/reports/export/transfered-in/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportTransferedInReport']);
-    Route::get('/reports/export/transfered-out/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportTransferedOutReport']);
-    Route::get('/reports/export/delivery-report/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportDeliveryReport']);
-    Route::get('/reports/export/sales-report/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportSalesReport']);
-    Route::get('/reports/export/inventory-report/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportInventoryReport']);
+    // // export reports
+    // Route::get('/reports/export/revenue-report/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportRevenueReport']);
+    // Route::get('/reports/export/transfered-in/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportTransferedInReport']);
+    // Route::get('/reports/export/transfered-out/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportTransferedOutReport']);
+    // Route::get('/reports/export/delivery-report/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportDeliveryReport']);
+    // Route::get('/reports/export/sales-report/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportSalesReport']);
+    // Route::get('/reports/export/inventory-report/{from}/{to}', [App\Http\Controllers\Admin\ReportsController::class, 'ExportInventoryReport']);
 
     //===================================================ITEM QUANTITY CHECK=======================================================================
     // item quantity check view
