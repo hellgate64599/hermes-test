@@ -50,7 +50,8 @@
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label><small>Item barcode</small></label>
-                                    <input type="text" name="item_barcode" class="form-control" value="{{$item->item_barcode}}" placeholder="Item Bar code" maxlength="6" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+                                    {{-- <input type="text" name="item_barcode" class="form-control" value="{{$item->item_barcode}}" placeholder="Item Bar code" maxlength="6" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"> --}}
+                                    <input type="text" name="item_barcode" class="form-control" value="{{$item->item_barcode}}" placeholder="Item Bar code">
                                 </div>
                             </div>
                             <div class="col-lg-4">
