@@ -192,12 +192,14 @@ class ItemsController extends Controller
             'item_category' => 'required',
             'item_sub_category' => 'required',
             'item_quantity' => 'required|numeric|min:1',
-            'item_barcode' => 'required|regex:/([0-9]{2})-([0-9]{2})-([0-9]{6})/',
+            // 'item_barcode' => 'required|regex:/([0-9]{2})-([0-9]{2})-([0-9]{6})/',
+            'item_barcode' => 'required',
             'item_cost' => 'required|numeric',
             'item_sell' => 'required|numeric',
         ],
         [
-            'item_barcode.regex' => 'Barcode format must be 00-00-000000',
+            // 'item_barcode.regex' => 'Barcode format must be 00-00-000000',
+            'item_barcode.regex' => 'Barcode is required',
         ]);
         
 
@@ -264,7 +266,8 @@ class ItemsController extends Controller
                 'item_category' => 'required',
                 'item_sub_category' => 'required',
                 'item_quantity' => 'required|numeric|min:0',
-                'item_barcode' => 'required|regex:/([0-9]{2})-([0-9]{2})-([0-9]{6})/',
+                // 'item_barcode' => 'required|regex:/([0-9]{2})-([0-9]{2})-([0-9]{6})/',
+                'item_barcode' => 'required',
                 'item_cost' => 'required|numeric',
                 'item_sell' => 'required|numeric',
             ],

@@ -50,7 +50,8 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label><small>Item barcode (auto format)</small></label>
-                                    <input type="text" name="item_barcode" class="form-control" placeholder="00-00-000000" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/^(?=[0-9]{10})([0-9]{2})([0-9]{2})([0-9]{6})$/, '$1-$2-$3');">
+                                    {{-- <input type="text" name="item_barcode" class="form-control" placeholder="00-00-000000" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/^(?=[0-9]{10})([0-9]{2})([0-9]{2})([0-9]{6})$/, '$1-$2-$3');"> --}}
+                                    <input type="text" name="item_barcode" class="form-control" placeholder="00-00-000000" minlength="10" maxlength="10">
                                 </div>
                             </div>
                             <div class="col-lg-6">
